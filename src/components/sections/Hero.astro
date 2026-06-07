@@ -13,10 +13,11 @@ const t = useTranslations(lang);
       name="Nikola Leleković"
       role={t('hero.role')}
       tagline={t('hero.tagline')}
-    />
-    <div class="hero-line flex gap-4 mt-10">
-      <a href="#projects" class="px-6 py-3 rounded-full bg-accent text-white font-medium hover:opacity-90 transition">{t('hero.cta.projects')}</a>
-      <a href="#contact" class="px-6 py-3 rounded-full border border-white/15 hover:border-accent-2 transition">{t('hero.cta.contact')}</a>
-    </div>
+    >
+      <div class="hero-line flex gap-4 mt-10">
+        <a href="#projects" class="px-6 py-3 rounded-full bg-accent text-white font-medium hover:opacity-90 transition">{t('hero.cta.projects')}</a>
+        <a href="#contact" class="px-6 py-3 rounded-full border border-white/15 hover:border-accent-2 transition">{t('hero.cta.contact')}</a>
+      </div>
+    </HeroAnimation>
   </div>
 </section>

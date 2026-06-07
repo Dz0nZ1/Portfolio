@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, type ReactNode } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -6,9 +6,10 @@ interface Props {
   name: string;
   role: string;
   tagline: string;
+  children?: ReactNode;
 }
 
-export default function HeroAnimation({ name, role, tagline }: Props) {
+export default function HeroAnimation({ name, role, tagline, children }: Props) {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -33,6 +34,7 @@ export default function HeroAnimation({ name, role, tagline }: Props) {
         {name}
       </h1>
       <p className="hero-line text-muted text-lg mt-6 max-w-xl">{tagline}</p>
+      {children}
     </div>
   );
 }

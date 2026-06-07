@@ -24,8 +24,8 @@ const entries = sortProjects(filterByLang(all.map((e) => e.data), lang));
             ))}
           </ul>
           <div class="flex gap-4 mt-5 text-sm">
-            {p.github && <a class="text-accent-2 hover:underline" href={p.github} target="_blank" rel="noopener">{t('projects.github')}</a>}
-            {p.live && <a class="text-accent-2 hover:underline" href={p.live} target="_blank" rel="noopener">{t('projects.live')}</a>}
+            {p.github && <a class="text-accent-2 hover:underline" href={p.github} target="_blank" rel="noopener noreferrer">{t('projects.github')}</a>}
+            {p.live && <a class="text-accent-2 hover:underline" href={p.live} target="_blank" rel="noopener noreferrer">{t('projects.live')}</a>}
           </div>
         </article>
       ))}
