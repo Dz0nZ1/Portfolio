@@ -1,0 +1,22 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/ui';
+import HeroAnimation from '../islands/HeroAnimation.tsx';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<section class="min-h-screen flex items-center relative overflow-hidden">
+  <div class="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+  <div class="absolute bottom-0 -left-32 h-96 w-96 rounded-full bg-accent-2/20 blur-3xl"></div>
+  <div class="mx-auto max-w-5xl px-6 relative">
+    <HeroAnimation
+      client:load
+      name="Nikola Leleković"
+      role={t('hero.role')}
+      tagline={t('hero.tagline')}
+    />
+    <div class="hero-line flex gap-4 mt-10">
+      <a href="#projects" class="px-6 py-3 rounded-full bg-accent text-white font-medium hover:opacity-90 transition">{t('hero.cta.projects')}</a>
+      <a href="#contact" class="px-6 py-3 rounded-full border border-white/15 hover:border-accent-2 transition">{t('hero.cta.contact')}</a>
+    </div>
+  </div>
+</section>
