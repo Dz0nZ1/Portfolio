@@ -1,0 +1,12 @@
+---
+import { getLangFromUrl, type Lang } from '../../i18n/ui';
+const current: Lang = getLangFromUrl(Astro.url);
+// EN lives at '/', SR at '/sr/'
+const enHref = '/';
+const srHref = '/sr/';
+---
+<div class="flex gap-2 text-sm">
+  <a href={enHref} class:list={["px-2 py-1 rounded", current === 'en' ? 'text-accent-2 font-semibold' : 'text-muted hover:text-fg']}>EN</a>
+  <span class="text-muted">/</span>
+  <a href={srHref} class:list={["px-2 py-1 rounded", current === 'sr' ? 'text-accent-2 font-semibold' : 'text-muted hover:text-fg']}>SR</a>
+</div>

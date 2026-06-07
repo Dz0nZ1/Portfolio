@@ -1,0 +1,19 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/ui';
+import LangSwitcher from './LangSwitcher.astro';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur bg-bg/70 border-b border-white/5">
+  <nav class="mx-auto max-w-5xl flex items-center justify-between px-6 py-4">
+    <a href={lang === 'sr' ? '/sr/' : '/'} class="font-display font-bold tracking-tight">Nikola Leleković</a>
+    <div class="flex items-center gap-6">
+      <ul class="hidden sm:flex gap-6 text-sm text-muted">
+        <li><a class="hover:text-fg" href="#about">{t('nav.about')}</a></li>
+        <li><a class="hover:text-fg" href="#projects">{t('nav.projects')}</a></li>
+        <li><a class="hover:text-fg" href="#contact">{t('nav.contact')}</a></li>
+      </ul>
+      <LangSwitcher />
+    </div>
+  </nav>
+</header>
