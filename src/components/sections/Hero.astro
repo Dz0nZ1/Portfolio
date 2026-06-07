@@ -1,13 +1,16 @@
 ---
 import { getLangFromUrl, useTranslations } from '../../i18n/ui';
 import HeroAnimation from '../islands/HeroAnimation.tsx';
+import Particles from '../islands/Particles.tsx';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<section class="min-h-screen flex items-center relative overflow-hidden">
-  <div class="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
-  <div class="absolute bottom-0 -left-32 h-96 w-96 rounded-full bg-accent-2/20 blur-3xl"></div>
-  <div class="mx-auto max-w-5xl px-6 relative">
+<section id="hero" class="min-h-screen flex items-center relative overflow-hidden">
+  <div class="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl aurora-1"></div>
+  <div class="absolute bottom-0 -left-32 h-96 w-96 rounded-full bg-accent-2/20 blur-3xl aurora-2"></div>
+  <Particles client:visible />
+  <div class="hero-glow"></div>
+  <div class="mx-auto max-w-5xl px-6 relative z-10">
     <HeroAnimation
       client:load
       name="Nikola Leleković"
@@ -21,3 +24,19 @@ const t = useTranslations(lang);
     </HeroAnimation>
   </div>
 </section>
+
+<script>
+  // Cursor-reactive glow: track pointer over the hero and move the radial light.
+  const hero = document.getElementById('hero');
+  const glow = hero?.querySelector<HTMLElement>('.hero-glow');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = window.matchMedia('(pointer: fine)').matches;
+
+  if (hero && glow && !reduce && fine) {
+    hero.addEventListener('pointermove', (e) => {
+      const r = hero.getBoundingClientRect();
+      glow.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
+      glow.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
+    });
+  }
+</script>

@@ -15,7 +15,7 @@ const entries = sortProjects(filterByLang(all.map((e) => e.data), lang));
     <h2 class="text-3xl sm:text-4xl font-bold">{t('projects.title')}</h2>
     <div class="grid sm:grid-cols-2 gap-6 mt-10">
       {entries.map((p) => (
-        <article class="rounded-2xl bg-surface border border-white/10 p-6 hover:border-accent/50 transition">
+        <article class="project-card rounded-2xl bg-surface border border-white/10 p-6">
           <h3 class="text-xl font-semibold">{p.title}</h3>
           <p class="text-muted text-sm mt-2">{p.description}</p>
           <ul class="flex flex-wrap gap-2 mt-4">
@@ -32,3 +32,24 @@ const entries = sortProjects(filterByLang(all.map((e) => e.data), lang));
     </div>
   </Reveal>
 </section>
+
+<script>
+  // Subtle 3D tilt on project cards (desktop pointers, motion allowed only).
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = window.matchMedia('(pointer: fine)').matches;
+
+  if (!reduce && fine) {
+    const cards = document.querySelectorAll<HTMLElement>('.project-card');
+    cards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(800px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 6).toFixed(2)}deg) translateY(-6px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+</script>
