@@ -1,0 +1,18 @@
+{
+  "nav.about": "O meni",
+  "nav.projects": "Projekti",
+  "nav.contact": "Kontakt",
+  "hero.role": "Software inženjer",
+  "hero.tagline": ".NET & Azure backend inženjer iz Beograda.",
+  "hero.cta.projects": "Pogledaj projekte",
+  "hero.cta.contact": "Kontaktiraj me",
+  "about.title": "O meni",
+  "about.skills": "Veštine",
+  "about.experience": "Iskustvo",
+  "projects.title": "Projekti",
+  "projects.github": "GitHub",
+  "projects.live": "Uživo",
+  "contact.title": "Kontakt",
+  "contact.lead": "Želiš da popričamo? Kontaktiraj me ovde.",
+  "footer.rights": "Sva prava zadržana."
+}
