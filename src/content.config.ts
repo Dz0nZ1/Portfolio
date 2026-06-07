@@ -12,7 +12,7 @@ const projects = defineCollection({
     order: z.number().default(0),
     featured: z.boolean().default(false),
     lang: z.enum(['en', 'sr']),
-    slug: z.string(),
+    key: z.string(),
   }),
 });
 

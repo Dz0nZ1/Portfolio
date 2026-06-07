@@ -6,7 +6,7 @@ github: "https://github.com/Dz0nZ1"
 order: 1
 featured: true
 lang: "en"
-slug: "azure-integration-pipeline"
+key: "azure-integration-pipeline"
 ---
 
 A real-world integration project migrating complex BizTalk orchestrations to Azure Logic Apps.

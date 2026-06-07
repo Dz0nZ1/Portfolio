@@ -3,7 +3,7 @@ import { filterByLang, sortProjects, type ProjectData } from './projects';
 
 const make = (over: Partial<ProjectData>): ProjectData => ({
   title: 't', description: 'd', tags: [], order: 0,
-  featured: false, lang: 'en', slug: 's', ...over,
+  featured: false, lang: 'en', key: 's', ...over,
 });
 
 describe('filterByLang', () => {
@@ -16,10 +16,10 @@ describe('filterByLang', () => {
 
 describe('sortProjects', () => {
   it('orders featured first, then by ascending order', () => {
-    const a = make({ slug: 'a', order: 2, featured: false });
-    const b = make({ slug: 'b', order: 5, featured: true });
-    const c = make({ slug: 'c', order: 1, featured: false });
-    const sorted = sortProjects([a, b, c]).map((p) => p.slug);
+    const a = make({ key: 'a', order: 2, featured: false });
+    const b = make({ key: 'b', order: 5, featured: true });
+    const c = make({ key: 'c', order: 1, featured: false });
+    const sorted = sortProjects([a, b, c]).map((p) => p.key);
     expect(sorted).toEqual(['b', 'c', 'a']);
   });
 });

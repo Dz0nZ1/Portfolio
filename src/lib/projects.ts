@@ -9,7 +9,7 @@ export interface ProjectData {
   order: number;
   featured: boolean;
   lang: Lang;
-  slug: string;
+  key: string;
 }
 
 export function filterByLang<T extends { lang: Lang }>(items: T[], lang: Lang): T[] {
