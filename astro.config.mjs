@@ -3,7 +3,7 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://example.netlify.app', // replace with real domain at deploy time
+  site: 'https://nikola-lelekovic.netlify.app',
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],

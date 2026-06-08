@@ -144,3 +144,6 @@ vite.config.ts.timestamp-*
 
 # Astro generated files
 .astro/
+
+# Local Netlify folder
+.netlify
