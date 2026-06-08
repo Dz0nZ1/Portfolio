@@ -27,7 +27,7 @@ export default function HeroParticles() {
       fpsLimit: 60,
       detectRetina: true,
       particles: {
-        number: { value: 50, density: { enable: true } },
+        number: { value: 80, density: { enable: true } },
         color: { value: ['#7c3aed', '#06b6d4'] },
         links: { enable: true, distance: 140, color: '#06b6d4', opacity: 0.25, width: 1 },
         move: {
