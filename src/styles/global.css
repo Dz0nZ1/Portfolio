@@ -1,19 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a0a0f;
-  --color-surface: #14141f;
-  --color-fg: #e8e8f0;
-  --color-muted: #9a9ab0;
-  --color-accent: #7c3aed;
-  --color-accent-2: #06b6d4;
+  /* ── Neo-brutalist palette ───────────────────────────── */
+  --color-bg: #0a0a0a;
+  --color-surface: #121212;
+  --color-panel: #161616;
+  --color-fg: #f5f5ef;
+  --color-muted: #8a8a82;
+  --color-line: #ffffff;
+
+  /* Electric accents */
+  --color-accent: #ff3d00;   /* blaze orange-red */
+  --color-accent-2: #d6ff3d; /* acid lime */
+  --color-accent-3: #3da5ff; /* electric blue */
+  --color-accent-4: #ff2d9b; /* hot magenta */
 
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   color-scheme: dark;
+  --grid: rgba(255, 255, 255, 0.04);
+}
+
+* {
+  border-radius: 0; /* brutalism: no soft corners */
 }
 
 html {
@@ -25,50 +38,180 @@ body {
   color: var(--color-fg);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  /* faint engineering grid behind everything */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 h1, h2, h3 {
   font-family: var(--font-display);
+  letter-spacing: -0.02em;
 }
 
-/* Aurora background blobs (Hero) */
-@keyframes aurora-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, 30px) scale(1.15); }
-}
-@keyframes aurora-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-30px, -20px) scale(1.12); }
-}
-.aurora-1 { animation: aurora-1 16s ease-in-out infinite; }
-.aurora-2 { animation: aurora-2 20s ease-in-out infinite; }
-
-/* Cursor-reactive glow (Hero) */
-.hero-glow {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    420px circle at var(--mx, 50%) var(--my, 28%),
-    rgba(124, 58, 237, 0.18),
-    transparent 60%
-  );
-  transition: background 0.2s ease-out;
+::selection {
+  background: var(--color-accent);
+  color: #000;
 }
 
-/* Project card hover (lift + glow; tilt applied via JS) */
-.project-card {
-  transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+/* ── Brutalist primitives ──────────────────────────────── */
+.brutal-border {
+  border: 2px solid var(--color-line);
+}
+.brutal-shadow {
+  box-shadow: 6px 6px 0 0 var(--color-accent);
+}
+.brutal-shadow-lime {
+  box-shadow: 6px 6px 0 0 var(--color-accent-2);
+}
+.brutal-shadow-blue {
+  box-shadow: 6px 6px 0 0 var(--color-accent-3);
+}
+
+/* Mono kicker label */
+.kicker {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.72rem;
+}
+
+/* ── Brutalist button (hard shadow that collapses on press) ── */
+.btn-brutal {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid var(--color-line);
+  background: var(--color-fg);
+  color: #000;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 1.5rem;
+  box-shadow: 6px 6px 0 0 var(--color-accent);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease;
+  will-change: transform;
+}
+.btn-brutal:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 0 var(--color-accent);
+}
+.btn-brutal:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0 0 0 0 var(--color-accent);
+}
+.btn-brutal--ghost {
+  background: transparent;
+  color: var(--color-fg);
+  box-shadow: 6px 6px 0 0 var(--color-accent-3);
+}
+.btn-brutal--ghost:hover {
+  background: var(--color-accent-3);
+  color: #000;
+  box-shadow: 9px 9px 0 0 var(--color-accent-3);
+}
+
+/* ── Card with hard-shadow lift ────────────────────────── */
+.brutal-card {
+  border: 2px solid var(--color-line);
+  background: var(--color-panel);
+  box-shadow: 6px 6px 0 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   transform-style: preserve-3d;
   will-change: transform;
 }
-.project-card:hover {
-  border-color: rgba(124, 58, 237, 0.5);
-  box-shadow: 0 24px 50px -24px rgba(124, 58, 237, 0.55), 0 0 0 1px rgba(6, 182, 212, 0.25);
+.brutal-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 10px 10px 0 0 var(--color-accent);
 }
 
-/* Accessibility: disable motion when the user requests it */
+/* Tag chip */
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 2px solid var(--color-line);
+  padding: 0.25rem 0.6rem;
+  background: var(--color-bg);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.chip:hover {
+  background: var(--color-accent-2);
+  color: #000;
+}
+
+/* ── Glitch text (hover) ───────────────────────────────── */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.glitch:hover::before {
+  opacity: 1;
+  color: var(--color-accent);
+  animation: glitch-x 0.4s steps(2) infinite;
+  clip-path: inset(0 0 55% 0);
+}
+.glitch:hover::after {
+  opacity: 1;
+  color: var(--color-accent-3);
+  animation: glitch-x 0.4s steps(2) infinite reverse;
+  clip-path: inset(55% 0 0 0);
+}
+@keyframes glitch-x {
+  0%   { transform: translate(0); }
+  25%  { transform: translate(-3px, 1px); }
+  50%  { transform: translate(3px, -1px); }
+  75%  { transform: translate(-2px, -1px); }
+  100% { transform: translate(0); }
+}
+
+/* ── Marquee ticker ────────────────────────────────────── */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee__track {
+  display: inline-flex;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  animation: marquee 22s linear infinite;
+}
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Section index label ───────────────────────────────── */
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  padding: 0.2rem 0.55rem;
+  display: inline-block;
+}
+
+/* ── Reveal helper (used by GSAP-free fallback) ────────── */
+.reveal-init { opacity: 0; transform: translateY(40px); }
+
+/* ── Accessibility: respect reduced motion ─────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
@@ -76,4 +219,6 @@ h1, h2, h3 {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+  .marquee__track { animation: none !important; }
+  .reveal-init { opacity: 1; transform: none; }
 }

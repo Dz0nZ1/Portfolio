@@ -29,27 +29,44 @@ const experience = [
   },
 ];
 ---
-<section id="about" class="mx-auto max-w-5xl px-6 py-24 scroll-mt-20">
+<section id="about" class="mx-auto max-w-6xl px-6 py-28 scroll-mt-20">
   <Reveal client:visible>
-    <h2 class="text-3xl sm:text-4xl font-bold">{t('about.title')}</h2>
-    <p class="text-muted mt-6 max-w-2xl leading-relaxed">{bio[lang]}</p>
+    <div class="flex items-center gap-4 mb-10">
+      <span class="section-tag">01 / {t('nav.about')}</span>
+      <div class="h-0.5 flex-1 bg-line/30"></div>
+    </div>
 
-    <h3 class="text-xl font-semibold mt-12">{t('about.skills')}</h3>
-    <ul class="flex flex-wrap gap-2 mt-4">
-      {skills.map((s) => (
-        <li class="px-3 py-1 rounded-full bg-surface border border-white/10 text-sm text-muted">{s}</li>
-      ))}
-    </ul>
+    <h2 class="text-4xl sm:text-6xl font-bold uppercase max-w-3xl">{t('about.title')}</h2>
+    <p class="text-muted mt-8 max-w-2xl leading-relaxed font-mono text-sm sm:text-base">{bio[lang]}</p>
 
-    <h3 class="text-xl font-semibold mt-12">{t('about.experience')}</h3>
-    <ul class="mt-4 space-y-6">
-      {experience.map((e) => (
-        <li class="border-l-2 border-accent/40 pl-4">
-          <p class="font-medium">{e.role} · <span class="text-accent-2">{e.company}</span></p>
-          <p class="text-sm text-muted">{e.period[lang]}</p>
-          <p class="text-sm text-muted mt-1">{e.note[lang]}</p>
-        </li>
-      ))}
-    </ul>
+    <div class="grid lg:grid-cols-2 gap-12 mt-16">
+      <!-- Stack -->
+      <div>
+        <h3 class="kicker text-accent-2 mb-5">{t('about.skills')}</h3>
+        <ul class="flex flex-wrap gap-2.5">
+          {skills.map((s) => (
+            <li class="chip">{s}</li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Experience -->
+      <div>
+        <h3 class="kicker text-accent-2 mb-5">{t('about.experience')}</h3>
+        <ul class="space-y-4">
+          {experience.map((e, i) => (
+            <li class="brutal-card p-5">
+              <div class="flex items-baseline justify-between gap-3 flex-wrap">
+                <p class="font-display font-bold text-lg">{e.role}</p>
+                <span class="font-mono text-xs text-accent">0{i + 1}</span>
+              </div>
+              <p class="font-mono text-sm text-accent-3 mt-1">{e.company}</p>
+              <p class="font-mono text-xs text-muted mt-2">{e.period[lang]}</p>
+              <p class="text-sm text-muted mt-2 leading-relaxed">{e.note[lang]}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   </Reveal>
 </section>

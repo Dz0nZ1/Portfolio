@@ -4,14 +4,22 @@ import LangSwitcher from './LangSwitcher.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<header class="fixed top-0 inset-x-0 z-50 backdrop-blur bg-bg/70 border-b border-white/5">
-  <nav aria-label={lang === 'sr' ? 'Glavna navigacija' : 'Main navigation'} class="mx-auto max-w-5xl flex items-center justify-between px-6 py-4">
-    <a href={lang === 'sr' ? '/sr/' : '/'} class="font-display font-bold tracking-tight">Nikola Leleković</a>
-    <div class="flex items-center gap-6">
-      <ul class="hidden sm:flex gap-6 text-sm text-muted">
-        <li><a class="hover:text-fg" href="#about">{t('nav.about')}</a></li>
-        <li><a class="hover:text-fg" href="#projects">{t('nav.projects')}</a></li>
-        <li><a class="hover:text-fg" href="#contact">{t('nav.contact')}</a></li>
+<header class="fixed top-0 inset-x-0 z-50 bg-bg/80 backdrop-blur border-b-2 border-line">
+  <nav
+    aria-label={lang === 'sr' ? 'Glavna navigacija' : 'Main navigation'}
+    class="mx-auto max-w-6xl flex items-center justify-between px-6 py-3"
+  >
+    <a
+      href={lang === 'sr' ? '/sr/' : '/'}
+      class="font-mono font-bold text-sm uppercase tracking-tight border-2 border-line px-2.5 py-1 hover:bg-accent hover:border-accent hover:text-black transition-colors"
+    >
+      N.L<span class="text-accent">_</span>
+    </a>
+    <div class="flex items-center gap-3 sm:gap-6">
+      <ul class="hidden sm:flex gap-6 font-mono text-xs uppercase tracking-widest text-muted">
+        <li><a class="hover:text-accent transition-colors" href="#about">01 / {t('nav.about')}</a></li>
+        <li><a class="hover:text-accent transition-colors" href="#projects">02 / {t('nav.projects')}</a></li>
+        <li><a class="hover:text-accent transition-colors" href="#contact">03 / {t('nav.contact')}</a></li>
       </ul>
       <LangSwitcher />
     </div>

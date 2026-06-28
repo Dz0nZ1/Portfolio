@@ -10,22 +10,42 @@ const t = useTranslations(lang);
 const all = await getCollection('projects');
 const entries = sortProjects(filterByLang(all.map((e) => e.data), lang));
 ---
-<section id="projects" class="mx-auto max-w-5xl px-6 py-24 scroll-mt-20">
+<section id="projects" class="mx-auto max-w-6xl px-6 py-28 scroll-mt-20">
   <Reveal client:visible>
-    <h2 class="text-3xl sm:text-4xl font-bold">{t('projects.title')}</h2>
-    <div class="grid sm:grid-cols-2 gap-6 mt-10">
-      {entries.map((p) => (
-        <article class="project-card rounded-2xl bg-surface border border-white/10 p-6">
-          <h3 class="text-xl font-semibold">{p.title}</h3>
-          <p class="text-muted text-sm mt-2">{p.description}</p>
-          <ul class="flex flex-wrap gap-2 mt-4">
+    <div class="flex items-center gap-4 mb-10">
+      <span class="section-tag">02 / {t('nav.projects')}</span>
+      <div class="h-0.5 flex-1 bg-line/30"></div>
+      <span class="font-mono text-xs text-muted">[{String(entries.length).padStart(2, '0')}]</span>
+    </div>
+
+    <h2 class="text-4xl sm:text-6xl font-bold uppercase mb-12">{t('projects.title')}</h2>
+
+    <div class="grid sm:grid-cols-2 gap-6">
+      {entries.map((p, i) => (
+        <article class="project-card brutal-card p-6 flex flex-col">
+          <div class="flex items-start justify-between gap-3">
+            <h3 class="font-display text-2xl font-bold uppercase">{p.title}</h3>
+            <span class="font-mono text-sm text-accent shrink-0">/{String(i + 1).padStart(2, '0')}</span>
+          </div>
+          <p class="text-muted text-sm mt-3 leading-relaxed flex-1">{p.description}</p>
+          <ul class="flex flex-wrap gap-2 mt-5">
             {p.tags.map((tag) => (
-              <li class="text-xs px-2 py-1 rounded bg-bg border border-white/10 text-muted">{tag}</li>
+              <li class="font-mono text-xs uppercase tracking-wide px-2 py-0.5 border border-line/40 text-muted">{tag}</li>
             ))}
           </ul>
-          <div class="flex gap-4 mt-5 text-sm">
-            {p.github && <a class="text-accent-2 hover:underline" href={p.github} target="_blank" rel="noopener noreferrer">{t('projects.github')}</a>}
-            {p.live && <a class="text-accent-2 hover:underline" href={p.live} target="_blank" rel="noopener noreferrer">{t('projects.live')}</a>}
+          <div class="flex gap-3 mt-6 pt-5 border-t-2 border-line/20">
+            {p.github && (
+              <a class="font-mono text-xs uppercase tracking-widest text-fg hover:text-accent transition-colors inline-flex items-center gap-1.5"
+                 href={p.github} target="_blank" rel="noopener noreferrer">
+                → {t('projects.github')}
+              </a>
+            )}
+            {p.live && (
+              <a class="font-mono text-xs uppercase tracking-widest text-fg hover:text-accent-2 transition-colors inline-flex items-center gap-1.5"
+                 href={p.live} target="_blank" rel="noopener noreferrer">
+                → {t('projects.live')}
+              </a>
+            )}
           </div>
         </article>
       ))}
@@ -45,7 +65,7 @@ const entries = sortProjects(filterByLang(all.map((e) => e.data), lang));
         const r = card.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width - 0.5;
         const py = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(800px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 6).toFixed(2)}deg) translateY(-6px)`;
+        card.style.transform = `perspective(900px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 5).toFixed(2)}deg)`;
       });
       card.addEventListener('mouseleave', () => {
         card.style.transform = '';
