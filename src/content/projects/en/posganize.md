@@ -2,7 +2,7 @@
 title: "Posganize"
 description: "Full-stack membership management system for sports clubs — React frontend, Spring Boot backend, with role-based auth, an admin dashboard and Stripe payments."
 tags: ["Spring Boot", "Java", "React", "Stripe", "Docker"]
-github: "https://github.com/Dz0nZ1/Posganize.be"
+github: "https://github.com/leqora/Posganize.be"
 order: 1
 featured: true
 lang: "en"

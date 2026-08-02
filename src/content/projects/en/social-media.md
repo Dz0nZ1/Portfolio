@@ -2,7 +2,7 @@
 title: "Social Media App"
 description: "Full-stack social media application — an ASP.NET Core REST API backend paired with a TypeScript frontend."
 tags: ["ASP.NET Core", "C#", "TypeScript", "REST API"]
-github: "https://github.com/Dz0nZ1/SocialMedia.be"
+github: "https://github.com/leqora/SocialMedia.be"
 order: 2
 featured: true
 lang: "en"

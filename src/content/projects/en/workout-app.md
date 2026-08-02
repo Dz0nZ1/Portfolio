@@ -2,7 +2,7 @@
 title: "Workout App"
 description: "Workout tracking app: a Spring Boot backend with Spring Security + JWT, JPA/Hibernate and MySQL, plus a Next.js frontend."
 tags: ["Spring Boot", "Java", "Next.js", "JWT", "MySQL"]
-github: "https://github.com/Dz0nZ1/WorkoutAppBackend"
+github: "https://github.com/leqora/WorkoutAppBackend"
 order: 3
 featured: false
 lang: "en"
